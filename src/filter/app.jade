@@ -1,0 +1,21 @@
+doctype html
+html(ng-app="app.filter")
+  include ../common/_head.jade
+  body
+    div(ng-controller="FilterController")
+      table.table
+        thead
+          tr
+            th 名字
+            th 年龄
+            th 注册时间
+            th 电话号码
+            th 金额
+        tbody
+          tr(ng-repeat="person in persons | orderAge")
+            td {{person.name}}
+            td {{person.age}}
+            td {{person.createTime | date:'yyyy-MM-dd HH:mm'}}
+            td {{person.phone}}
+            td {{person.money | number:2 | currency: '$'}}
+
