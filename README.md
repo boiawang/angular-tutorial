@@ -12,11 +12,13 @@ angular tutorial
 npm install
 ```
 
+
 2. bower install
 
 ```
 bower install
 ```
+
 
 3. gulp
 
