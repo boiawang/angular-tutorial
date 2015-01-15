@@ -2,7 +2,16 @@ gulp = require 'gulp'
 gutil = require 'gulp-util'
 jade = require 'gulp-jade'
 coffee = require 'gulp-coffee'
+karma = require 'gulp-karma'
 mainBowerFiles = require 'main-bower-files'
+
+testFiles = [
+  'www/lib/angular.js'
+  'www/lib/angular-mocks.js'
+  
+  'www/**/app.js'
+  'www/**/*Spec.js'
+]
 
 gulp.task 'bower', () ->
   return gulp.src(mainBowerFiles())
@@ -20,6 +29,26 @@ gulp.task 'coffee', () ->
     }))
     .on('error', gutil.log)
     .pipe(gulp.dest('./www/'))
+
+gulp.task 'test', () ->
+  gulp.src(testFiles)
+    .pipe(karma({
+      configFile: 'karma.conf.js'
+      action: 'run'
+    }))
+    .on('error', (err) ->
+      throw err
+    )
+
+gulp.task 'test-watch', () ->
+  gulp.src(testFiles)
+    .pipe(karma({
+      configFile: 'karma.conf.js'
+      action: 'watch'
+    }))
+    .on('error', (err) ->
+      throw err
+    )
 
 gulp.task 'watch', () ->
   gulp.watch './bower_components/**/*', ['bower']
