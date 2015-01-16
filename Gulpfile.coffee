@@ -7,6 +7,8 @@ mainBowerFiles = require 'main-bower-files'
 
 testFiles = [
   'www/lib/angular.js'
+  'www/lib/jquery.js',
+  'www/lib/jasmine-jquery.js',
   'www/lib/angular-mocks.js'
   
   'www/**/app.js'
@@ -54,5 +56,6 @@ gulp.task 'watch', () ->
   gulp.watch './bower_components/**/*', ['bower']
   gulp.watch 'src/**/*.jade', ['jade']
   gulp.watch 'src/**/*.coffee', ['coffee']
+  gulp.watch 'src/**/*.coffee', ['test']
 
 gulp.task 'default', ['bower', 'jade', 'coffee']
